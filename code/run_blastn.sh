@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d data\/tsv ]; then
+    mkdir -p data\/tsv
+fi
+
 result=data\/tsv\/N14_top_seqs_result.tsv
 fasta=data\/fasta\/N14_top_seqs.fasta
 SECONDS=0

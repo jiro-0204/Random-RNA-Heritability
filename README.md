@@ -2,21 +2,22 @@
 
 ## Overview
 
-This repository contains source code for the paper "Emergent primordial heritability in short random RNA pools". The data processing and analysis scripts are demonstrated using N14 dataset samples for clarity. The same procedures can be applied to other datasets (N14p, N20, SR_N14, etc.) with minor modifications. All raw FASTQ sequence data are available from the NCBI repository. Processed and analyzed data files are available in `code/data/processed/`.
+This repository contains source code for the paper [Emergent primordial heritability in short random RNA pools](https://example.com). The data processing and analysis scripts are demonstrated using N14 dataset samples for clarity. The same procedures can be applied to other datasets (N14p, N20, SR_N14, etc.) with minor modifications. 
 
 ## Project Structure
 
 ```
 code/
 ├── 1-data_processing.ipynb    # Data preprocessing pipeline
-├── 2-analysis.ipynb            # Statistical and structural analysis
+├── 2-analysis.ipynb            # k-mer-based, structural and other analysis
 ├── 3-visualization.ipynb       # Visualization of results
 ├── run_cutadapt.sh            # Sequencing read trimming script
-├── run_blastn.sh              # BLAST sequence alignment script
+├── run_blastn.sh              # BLAST searching script
 └── data/                      # Data directory
     ├── raw_data/              # Raw FASTQ files
     ├── trimmed/               # Trimmed FASTQ files
-    ├── fasta/                 # FASTA sequences
+    ├── raw_seqs_counts/       # Unique sequences and read counts as npy files
+    ├── fasta/                 # FASTA files
     ├── tsv/                   # BLAST results
     ├── filtered/              # Filtered sequences
     └── processed/             # Final analyzed data
@@ -27,82 +28,59 @@ code/
 ### Step 1: Prepare Raw Sequence Data
 
 Place raw FASTQ files in `data/raw_data/{product_name}/` directory. The naming convention follows:
-- `{round}_{lane}_1.fq.gz` - Read 1 (forward)
-- `{round}_{lane}_2.fq.gz` - Read 2 (reverse)
+- `{product_name}_R{round}_1.fq.gz` - Read 1 (forward)
+- `{product_name}_R{round}_2.fq.gz` - Read 2 (reverse)
 
-### Step 2: Quality Trimming
+### Step 2: Cutadapt trimming
 
 Run the cutadapt script to trim raw reads and remove adapters:
 
 ```bash
-./run_cutadapt.sh
+bash run_cutadapt.sh
 ```
 
 This script:
-- Removes poly(A)/poly(T) tails using 10bp adapter sequences
-- Trims 3 bp from the 5' end
+- Remove adapter sequences
+- Removes poly(A)/poly(T) tails
+- Trims 3 bp from the 5' or 3' end
 - Filters by quality score (Q30)
 - Retains sequences between 15-45 bp
-- Outputs trimmed reads to `data/trimmed/{product_name}/`
+- Outputs trimmed reads as FASTQ files to `data/trimmed/{product_name}/`
 
 ### Step 3: BLAST Sequence Alignment
-
-After FASTA files are generated, perform BLAST against NCBI core_nt database:
+Run `1-data_processing.ipynb` . After FASTA files are generated, perform BLAST against NCBI core_nt database:
 
 ```bash
-./run_blastn.sh
+bash run_blastn.sh
 ```
 
 This script:
 - Queries sequences against the core_nt database
 - Outputs results to `data/tsv/{product_name}/`
-- Uses 16 parallel threads for faster processing
 
 ### Step 4: Data Filtering and Aggregation
+Run `1-data_processing.ipynb`, and the filtered dataset is organized as a list of DataFrames, where each DataFrame contains:
+- **Seqs**: RNA sequence
+- **Counts**: Read count for each sequence
+- **Lens**: Sequence length
 
-The filtered dataset is organized as a list of DataFrames, where each DataFrame contains:
-- **Sequence**: RNA sequence
-- **Count**: Read count for each sequence
-- **Length**: Sequence length
-
-The list length corresponds to the number of selection rounds. Filtered data is stored in `data/filtered/`.
+The list length corresponds to the number of rounds. Filtered data is stored in `data/filtered/`.
 
 ## Analysis
 
-### Step 1: Run Analysis Pipeline
-
-Execute the analysis notebook after completing data processing for all samples:
-
-```bash
-jupyter notebook code/2-analysis.ipynb
-```
+Run `2-analysis.ipynb` after completing data processing for all samples.
 
 This notebook performs:
 - Statistical analysis of sequence diversity
 - Heritability calculations
-- Structural and sequence pattern analysis
+- Structural and sequence pattern analysis, etc...
 
-### Step 2: Output Files
-
-Analysis results are saved to `data/processed/` and include:
-- Diversity metrics across rounds
-- Heritability scores
-- Structural predictions
-- Summary statistics
+Analysis results are saved to `data/processed/`.
 
 ## Visualization
 
-Generate publication-ready figures by running:
+Run `3-visualization.ipynb` and generate figures for the paper.
 
-```bash
-jupyter notebook code/3-visualization.ipynb
-```
-
-This notebook creates:
-- Sequence diversity plots
-- Heritability trends
-- Comparative analyses
-- High-resolution publication figures
 
 ## Requirements
 
@@ -110,25 +88,19 @@ The analysis requires the following Python packages:
 - pandas
 - numpy
 - scipy
+- scikit-learn
+- numba
 - matplotlib
 - seaborn
 - biopython
+- ViennaRNA
 
 Tools:
 - cutadapt (for read trimming)
-- BLAST+ (for sequence alignment)
+- BLAST+ (for sequence searching)
 
 ## Data Availability
 
-- Raw FASTQ sequence data: NCBI BioProject repository
+- Raw FASTQ sequence data: [NCBI BioProject repository](https://example.com)
 - Processed analyzed data: `code/data/processed/`
-- Key results: Available upon request
 
-## Citation
-
-Please cite this work as:
-> Emergent primordial heritability in short random RNA pools
-
-## License
-
-Please refer to the repository for license information.
