@@ -2,15 +2,15 @@
 
 ## Overview
 
-This repository contains source code for the paper [Emergent primordial heritability in short random RNA pools](https://example.com). The data processing and analysis scripts are demonstrated using N14 dataset samples for clarity. The same procedures can be applied to other datasets (N14p, N20, SR_N14, etc.) with minor modifications. 
+This repository contains source code for the paper "Emergent primordial heritability in short random RNA pools". The data processing and analysis scripts are demonstrated using N14 dataset samples for clarity. The same procedures can be applied to other datasets (N14p, N20, SR_N14, etc.) with minor modifications. 
 
 ## Project Structure
 
 ```
 code/
 ├── 1-data_processing.ipynb    # Data preprocessing pipeline
-├── 2-analysis.ipynb            # k-mer-based, structural and other analysis
-├── 3-visualization.ipynb       # Visualization of results
+├── 2-analysis.ipynb           # k-mer-based, structural and other analysis
+├── 3-visualization.ipynb      # Visualization of results
 ├── run_cutadapt.sh            # Sequencing read trimming script
 ├── run_blastn.sh              # BLAST searching script
 └── data/                      # Data directory
@@ -101,6 +101,5 @@ Tools:
 
 ## Data Availability
 
-- Raw FASTQ sequence data: [NCBI BioProject repository](https://example.com)
+- Raw FASTQ sequence data: NCBI BioProject repositry PRJNA1474794
 - Processed analyzed data: `code/data/processed/`
-
