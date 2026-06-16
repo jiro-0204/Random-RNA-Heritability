@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains source code for the paper "Emergent primordial heritability in short random RNA pools". The data processing and analysis scripts are demonstrated using N14 dataset samples for clarity. The same procedures can be applied to other datasets (N14p, N20, SR_N14, etc.) with minor modifications. 
+This repository contains source code for the paper [Emergent primordial heritability in short random RNA pools](https://www.biorxiv.org/content/10.64898/2026.06.14.732136v1). The data processing and analysis scripts are demonstrated using N14 dataset samples for clarity. The same procedures can be applied to other datasets (N14p, N20, SR_N14, etc.) with minor modifications. 
 
 ## Project Structure
 
