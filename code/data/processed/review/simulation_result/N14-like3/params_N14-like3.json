@@ -1,0 +1,12 @@
+{
+    "N": 20000,
+    "num_reaction": 20000,
+    "num_experiments": 10,
+    "l": 14,
+    "temp": 22.0,
+    "k": 6,
+    "p_cleave": 0.02,
+    "gamma": 1.6,
+    "p_cycphos": 1.0,
+    "p_cycphos_pre": 0.0
+}

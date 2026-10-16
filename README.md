@@ -8,19 +8,21 @@ This repository contains source code for the paper [Emergent primordial heritabi
 
 ```
 code/
-├── 1-data_processing.ipynb    # Data preprocessing pipeline
-├── 2-analysis.ipynb           # k-mer-based, structural and other analysis
-├── 3-visualization.ipynb      # Visualization of results
-├── run_cutadapt.sh            # Sequencing read trimming script
-├── run_blastn.sh              # BLAST searching script
-└── data/                      # Data directory
-    ├── raw_data/              # Raw FASTQ files
-    ├── trimmed/               # Trimmed FASTQ files
-    ├── raw_seqs_counts/       # Unique sequences and read counts as npy files
-    ├── fasta/                 # FASTA files
-    ├── tsv/                   # BLAST results
-    ├── filtered/              # Filtered sequences
-    └── processed/             # Final analyzed data
+├── 1-data_processing.ipynb      # Data preprocessing pipeline
+├── 2-analysis.ipynb             # k-mer-based, structural and other analysis
+├── 3-review.ipynb               # Additional anlysis for revised manuscript
+├── 4-visualization.ipynb        # Visualization of results
+├── 5-visualization-review.ipynb # Visualization for additional analysis
+├── run_cutadapt.sh              # Sequencing read trimming script
+├── run_blastn.sh                # BLAST searching script
+└── data/                        # Data directory
+    ├── raw_data/                # Raw FASTQ files
+    ├── trimmed/                 # Trimmed FASTQ files
+    ├── raw_seqs_counts/         # Unique sequences and read counts as npy files
+    ├── fasta/                   # FASTA files
+    ├── tsv/                     # BLAST results
+    ├── filtered/                # Filtered sequences
+    └── processed/               # Final analyzed data
 ```
 
 ## Data Processing Pipeline
@@ -68,7 +70,7 @@ The list length corresponds to the number of rounds. Filtered data is stored in 
 
 ## Analysis
 
-Run `2-analysis.ipynb` after completing data processing for all samples.
+Run `2-analysis.ipynb` and `3-review.ipynb` after completing data processing for all samples.
 
 This notebook performs:
 - Statistical analysis of sequence diversity
@@ -79,7 +81,7 @@ Analysis results are saved to `data/processed/`.
 
 ## Visualization
 
-Run `3-visualization.ipynb` and generate figures for the paper.
+Run `4-visualization.ipynb` and `5-visualization-review.ipynb`, and generate figures for the paper.
 
 
 ## Requirements
@@ -103,3 +105,5 @@ Tools:
 
 - Raw FASTQ sequence data: NCBI BioProject repositry PRJNA1474794
 - Processed analyzed data: `code/data/processed/`
+
+Note: Due to data size constraints, only a portion of the raw simulation data for Fig S8 was saved.
